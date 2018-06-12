@@ -1,0 +1,207 @@
+<?xml version="1.0"?>
+<ruleset name="custom_psr2">
+    <!--
+       The name attribute of the ruleset tag is displayed
+       when running PHP_CodeSniffer with the -v command line
+       argument. The description tag below is not displayed anywhere
+       except in this file, so it can contain information for
+       developers who may change this file in the future.
+     -->
+    <description>Custom PHP CodeSniffer file for projects</description>
+
+
+    <!--
+       If no files or directories are specified on the command line
+       your custom standard can specify what files should be checked
+       instead.
+
+       Note that specifying any file or directory path
+       on the command line will ignore all file tags.
+     -->
+    <file>./src</file>
+    <file>./tests</file>
+    <exclude-pattern>./src/views</exclude-pattern>
+
+    <!--  Turn colors ON  -->
+    <arg name="colors"/>
+
+    <!--
+        Include all sniffs in the PSR2 standard except one. Note that
+        the name of the sniff being excluded is the code that the sniff
+        is given by PHP_CodeSniffer and is based on the file name and
+        path of the sniff class. You can display these codes using the
+        -s command line argument when checking a file.
+     -->
+    <rule ref="PSR2">
+        <exclude name="PSR1.Classes.ClassDeclaration.MissingNamespace"/>
+    </rule>
+
+    <!-- Test method names do not need to be Camel Caps -->
+    <rule ref="PSR1.Methods.CamelCapsMethodName.NotCamelCaps">
+        <exclude-pattern>/tests/*Test.php</exclude-pattern>
+    </rule>
+
+    <!--
+        RULES:      GENERIC
+     -->
+    <!--  Generic - Classes -->
+    <rule ref="Generic.Classes.DuplicateClassName"/>
+
+    <!-- Generic - Code Analysis -->
+    <rule ref="Generic.CodeAnalysis.EmptyStatement"/>
+    <rule ref="Generic.CodeAnalysis.ForLoopShouldBeWhileLoop"/>
+    <rule ref="Generic.CodeAnalysis.ForLoopWithTestFunctionCall"/>
+    <rule ref="Generic.CodeAnalysis.JumbledIncrementer"/>
+    <rule ref="Generic.CodeAnalysis.UnconditionalIfStatement"/>
+    <rule ref="Generic.CodeAnalysis.UnnecessaryFinalModifier"/>
+    <exclude name="Generic.CodeAnalysis.UnusedFunctionParameter"/>
+    <exclude name="Generic.CodeAnalysis.UselessOverridingMethod"/>
+
+    <!-- Generic - Commenting -->
+    <exclude name="Generic.Commenting.Todo"/>
+    <exclude name="Generic.Commenting.Fixme"/>
+
+    <!-- Generic - ControlStructures -->
+    <rule ref="Generic.ControlStructures.InlineControlStructure"/>
+
+    <!-- Generic - Debug -->
+    <exclude name="Generic.Debug.ClosureLinter"/>
+    <exclude name="Generic.Debug.JSHint"/>
+    <exclude name="Generic.Debug.CSSLint"/>
+
+    <!-- Generic - Files -->
+    <rule ref="Generic.Files.ByteOrderMark"/>
+    <rule ref="Generic.Files.EndFileNewline"/>
+    <exclude name="Generic.Files.EndFileNoNewline"/>
+    <rule ref="Generic.Files.InlineHTML"/>
+    <rule ref="Generic.Files.LineEndings"/>
+    <rule ref="Generic.Files.LineLength"/>
+    <rule ref="Generic.Files.OneClassPerFile"/>
+    <exclude name="Generic.Files.LowercasedFilename"/>
+    <rule ref="Generic.Files.OneInterfacePerFile"/>
+
+    <!-- Generic - Formatting -->
+    <rule ref="Generic.Formatting.DisallowMultipleStatements"/>
+    <exlude name="Generic.Formatting.MultipleStatementAlignment"/>
+    <rule ref="Generic.Formatting.SpaceAfterCast"/>
+    <exlude name="Generic.Formatting.NoSpaceAfterCast"/>
+
+    <!-- Generic - Functions -->
+    <rule ref="Generic.Functions.CallTimePassByReference"/>
+    <rule ref="Generic.Functions.FunctionCallArgumentSpacing"/>
+    <rule ref="Generic.Functions.OpeningFunctionBraceBsdAllman"/>
+    <exclude name="Generic.Functions.OpeningFunctionBraceKernighanRitchie"/>
+
+    <!-- Generic - Metrics -->
+    <rule ref="Generic.Metrics.CyclomaticComplexity"/>
+    <rule ref="Generic.Metrics.NestingLevel"/>
+
+    <!-- Generic - NamingConventions -->
+    <rule ref="Generic.NamingConventions.ConstructorName"/>
+    <rule ref="Generic.NamingConventions.UpperCaseConstantName"/>
+    <exclude name="Generic.NamingConventions.CamelCapsFunctionName"/>
+
+    <!-- Generic - PHP -->
+    <exclude name="Generic.PHP.ClosingPHPTag"/>
+    <rule ref="Generic.PHP.DeprecatedFunctions"/>
+    <rule ref="Generic.PHP.DisallowShortOpenTag"/>
+    <rule ref="Generic.PHP.ForbiddenFunctions"/>
+    <rule ref="Generic.PHP.LowerCaseConstant"/>
+    <rule ref="Generic.PHP.LowerCaseKeyword"/>
+    <rule ref="Generic.PHP.NoSilencedErrors"/>
+    <exclude name="Generic.PHP.UpperCaseConstant"/>
+    <rule ref="Generic.PHP.SAPIUsage"/>
+
+    <!-- Generic - Strings -->
+    <!-- <rule ref="Generic.Strings.UnnecessaryStringConcat"/> -->
+
+    <!-- Generic - VersionControl -->
+    <rule ref="Generic.VersionControl.SubversionProperties"/>
+
+    <!--  Generic - WhiteSpace -->
+    <rule ref="Generic.WhiteSpace.DisallowTabIndent"/>
+    <exclude name="Generic.WhiteSpace.DisallowSpaceIndent"/>
+    <rule ref="Generic.WhiteSpace.ScopeIndent"/>
+
+
+    <!--
+        RULES:      MySource
+     -->
+    <!-- MySource - Channels -->
+    <rule ref="MySource.Channels.DisallowSelfActions"/>
+    <rule ref="MySource.Channels.IncludeOwnSystem"/>
+    <exclude name="MySource.Channels.IncludeSystem"/>
+    <rule ref="MySource.Channels.UnusedSystem"/>
+
+    <!-- MySource - Commenting -->
+    <!-- <rule ref="MySource.Commenting.FunctionComment"/> -->
+
+    <!-- MySource - CSS -->
+    <rule ref="MySource.CSS.BrowserSpecificStyles"/>
+
+    <!-- MySource - Debug -->
+    <rule ref="MySource.Debug.DebugCode"/>
+    <rule ref="MySource.Debug.FirebugConsole"/>
+
+    <!-- MySource - Objects -->
+    <rule ref="MySource.Objects.AssignThis"/>
+    <rule ref="MySource.Objects.CreateWidgetTypeCallback"/>
+    <rule ref="MySource.Objects.DisallowNewWidget"/>
+
+    <!-- MySource - PHP -->
+    <rule ref="MySource.PHP.EvalObjectFactory"/>
+    <rule ref="MySource.PHP.GetRequestData"/>
+    <exclude name="MySource.PHP.ReturnFunctionValue"/>
+    <rule ref="MySource.PHP.AjaxNullComparison"/>
+
+    <!-- MySource - Strings -->
+    <rule ref="MySource.Strings.JoinStrings"/>
+
+
+    <!--
+        RULES:      Squiz
+     -->
+    <!-- Squiz - PHP -->
+    <rule ref="Squiz.PHP.CommentedOutCode">
+        <exclude-pattern>*/config/*</exclude-pattern>
+        <properties>
+            <property name="maxPercentage " value="45"/>
+        </properties>
+    </rule>
+    <exclude name="Squiz.PHP.DisallowComparisonAssignment"/>
+    <exclude name="Squiz.PHP.DisallowInlineIf"/>
+    <exclude name="Squiz.PHP.DisallowMultipleAssignments"/>
+    <rule ref="Squiz.PHP.DisallowSizeFunctionsInLoops"/>
+    <rule ref="Squiz.PHP.DiscouragedFunctions"/>
+    <rule ref="Squiz.PHP.EmbeddedPhp"/>
+    <rule ref="Squiz.PHP.Eval"/>
+    <!--<rule ref="Squiz.PHP.ForbiddenFunctions"/>-->
+    <rule ref="Squiz.PHP.GlobalKeyword"/>
+    <rule ref="Squiz.PHP.Heredoc"/>
+    <rule ref="Squiz.PHP.InnerFunctions"/>
+    <rule ref="Squiz.PHP.LowercasePHPFunctions"/>
+    <rule ref="Squiz.PHP.NonExecutableCode"/>
+
+    <!-- Squiz - Scope -->
+    <rule ref="Squiz.Scope.MemberVarScope"/>
+    <rule ref="Squiz.Scope.MethodScope"/>
+    <rule ref="Squiz.Scope.StaticThisUsage"/>
+
+    <!-- Squiz - WhiteSpace -->
+    <rule ref="Squiz.WhiteSpace.CastSpacing"/>
+    <rule ref="Squiz.WhiteSpace.ControlStructureSpacing"/>
+    <!--<rule ref="Squiz.WhiteSpace.FunctionClosingBraceSpace"/>-->
+    <rule ref="Squiz.WhiteSpace.FunctionOpeningBraceSpace"/>
+    <exclude name="Squiz.WhiteSpace.FunctionSpacing"/>
+    <rule ref="Squiz.WhiteSpace.LanguageConstructSpacing"/>
+    <rule ref="Squiz.WhiteSpace.LogicalOperatorSpacing"/>
+    <exclude name="Squiz.WhiteSpace.MemberVarSpacing"/>
+    <exclude name="Squiz.WhiteSpace.ObjectOperatorSpacing"/>
+    <exclude name="Squiz.WhiteSpace.OperatorSpacing"/>
+    <rule ref="Squiz.WhiteSpace.PropertyLabelSpacing"/>
+    <rule ref="Squiz.WhiteSpace.ScopeClosingBrace"/>
+    <rule ref="Squiz.WhiteSpace.ScopeKeywordSpacing"/>
+    <rule ref="Squiz.WhiteSpace.SemicolonSpacing"/>
+    <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace"/>
+
+</ruleset>
