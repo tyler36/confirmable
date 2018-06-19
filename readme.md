@@ -59,7 +59,7 @@ I like to add a notification to the profile page.
 // view/user/show.blade.php
 ...
     @if($user->isNotConfirmed())
-        @include('common.confirmation_required)
+        @include('common.confirmation_required')
     @endif
 ```
 ```
