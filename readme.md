@@ -65,7 +65,34 @@ I like to add a notification to the profile page.
 ```
 // view/forms/confirmation.blade.php
 ...
-    <
+<form method="post" action="{{ route('confirm.update') }}">
+    @csrf()
+
+    {{-- FORM:      Email --}}
+    <div class="field form-email">
+            <label for="email" class="label">@lang('user.email')</label>
+            <input name="email" type="email" required="true">
+    </div>
+
+
+    {{-- FORM:      Token --}}
+    <div class="field form-token">
+        <label for="token" class="label">@lang('confirmable::message.token')</label>
+        <input name="token" type="text" required="true">
+    </div>
+
+    {{-- FORM:      Acceptance --}}
+    <div class="field form-acceptance">
+        <label class="label">@lang('confirmable::message.acceptance')</label>
+        <input id="terms" name="terms" type="checkbox">
+        <label for="terms" class="text-transform-off">
+            I have read and agree to the <a href="#">terms and conditions</a> and <a href="#">privacy policy</a> of this site.
+        </label>
+    </div>
+
+    {{-- FORM:      Submit --}}
+    <button type="submit">Submit</button>
+</form>
 ```
 
 - Apply middleware
